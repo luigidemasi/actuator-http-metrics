@@ -132,12 +132,6 @@
             <version>0.18.0</version>
         </dependency>
 
-<!--        <dependency>
-            <groupId>org.yaml</groupId>
-            <artifactId>snakeyaml</artifactId>
-            <version>2.0</version>
-        </dependency>-->
-
     </dependencies>
 
     <build>
@@ -156,4 +150,36 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>openshift</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.eclipse.jkube</groupId>
+                        <artifactId>openshift-maven-plugin</artifactId>
+                        <version>1.13.1</version>
+                        <configuration>
+                            <resources>
+                                <controller>
+                                    <env>
+                                        <AB_PROMETHEUS_OFF>true</AB_PROMETHEUS_OFF>
+                                        <AB_JOLOKIA_OFF>true</AB_JOLOKIA_OFF>
+                                    </env>
+                                </controller>
+                            </resources>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>resource</goal>
+                                    <goal>build</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

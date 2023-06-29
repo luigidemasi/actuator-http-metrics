@@ -37,7 +37,7 @@ public class MyRouteBuilder extends RouteBuilder {
         // in charge of querying the REST endpoints from actuator
         restConfiguration()
                 .host("0.0.0.0")
-                .port(8015)
+                .port(8080)
                 .bindingMode(RestBindingMode.json);
 
         // First, let's show the routes we have exposed. Let's create a timer
